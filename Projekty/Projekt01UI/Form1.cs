@@ -1,10 +1,14 @@
+using Projekt01UI.Presenters;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Projekt01UI
 {
     public partial class Form1 : Form
     {
+        private TextAnalyzerDataPresenter textAnalyzerDataPresenter;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,17 +31,18 @@ namespace Projekt01UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string inputText = richTextBox1.Text;
+            textAnalyzerDataPresenter.PerformTextAnalysis(richTextBox1.Text);
 
-            textBox1.Text = inputText.Length.ToString();
+        }
 
-            textBox2.Text = Regex.IsMatch(inputText, ".*[a-zA-Z].*") ? "TAK" : "NIE";
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
 
-            textBox3.Text = Regex.IsMatch(inputText, ".*[0-9].*") ? "TAK" : "NIE";
+        }
 
-            textBox4.Text = Regex.IsMatch(inputText, ".*[@_!#$%^&*()<>?}{~:].*") ? "TAK" : "NIE";
-
-
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textAnalyzerDataPresenter = new TextAnalyzerDataPresenter(textBox1, textBox2, textBox3, textBox4, textBox5);
         }
     }
 }

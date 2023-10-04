@@ -39,6 +39,7 @@
             textBox4 = new TextBox();
             richTextBox1 = new RichTextBox();
             button1 = new Button();
+            textBox5 = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -103,6 +104,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(154, 23);
             textBox2.TabIndex = 6;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox3
             // 
@@ -138,11 +140,19 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(634, 273);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(154, 23);
+            textBox5.TabIndex = 11;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox5);
             Controls.Add(button1);
             Controls.Add(richTextBox1);
             Controls.Add(textBox4);
@@ -156,6 +166,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,5 +184,6 @@
         private TextBox textBox4;
         private RichTextBox richTextBox1;
         private Button button1;
+        private TextBox textBox5;
     }
 }
