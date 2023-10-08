@@ -1,3 +1,5 @@
+using projekt01.Core.Services;
+using projekt01.Shared.Entities;
 using Projekt01UI.Presenters;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -8,6 +10,7 @@ namespace Projekt01UI
     public partial class Form1 : Form
     {
         private TextAnalyzerDataPresenter textAnalyzerDataPresenter;
+        private BaseTextStatisticsServicePresenter baseTextStatisticsServicePresenter;
 
         public Form1()
         {
@@ -31,7 +34,24 @@ namespace Projekt01UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textAnalyzerDataPresenter.PerformTextAnalysis(richTextBox1.Text);
+            //textAnalyzerDataPresenter.PerformTextAnalysis(richTextBox1.Text);
+            openFileDialog1.InitialDirectory = @"./";
+            openFileDialog1.Filter = "Text files (*.txt)|*.txt";
+            openFileDialog1.FilterIndex = 2;
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string linieTekstu = File.ReadAllText(openFileDialog1.FileName);
+                richTextBox1.Text = linieTekstu;
+                baseTextStatisticsServicePresenter = new BaseTextStatisticsServicePresenter();
+                TextStatisticsData data = baseTextStatisticsServicePresenter.CountStatistics(linieTekstu);
+                TextPrintingData dataResult = baseTextStatisticsServicePresenter.FillPrintingData(data);
+                textBox1.Text = dataResult.AllSymbolCount.ToString();
+                textBox2.Text = dataResult.UniqueSymbolCount.ToString();
+                textBox3.Text = dataResult.Entropy.ToString();
+                richTextBox2.Text = dataResult.SymbolStatistics.ToString();
+
+            }
 
         }
 
@@ -42,7 +62,12 @@ namespace Projekt01UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textAnalyzerDataPresenter = new TextAnalyzerDataPresenter(textBox1, textBox2, textBox3, textBox4, textBox5);
+            //textAnalyzerDataPresenter = new TextAnalyzerDataPresenter(textBox1, textBox2, textBox3, , textBox5);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
