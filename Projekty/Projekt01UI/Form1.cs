@@ -49,7 +49,10 @@ namespace Projekt01UI
                 textBox1.Text = dataResult.AllSymbolCount.ToString();
                 textBox2.Text = dataResult.UniqueSymbolCount.ToString();
                 textBox3.Text = dataResult.Entropy.ToString();
-                richTextBox2.Text = dataResult.SymbolStatistics.ToString();
+                foreach (SymbolPrintingData symbol in dataResult.SymbolStatistics) {
+                    richTextBox2.Text = symbol.BinaryNotation + " | " + symbol.DecimalNotation + " | " + symbol.Symbol + " | " + symbol.Frequency + " | " + symbol.Probability + " | " + symbol.InformationQuantity + "\n";
+                }
+
 
             }
 
