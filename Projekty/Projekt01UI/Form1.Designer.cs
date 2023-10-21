@@ -170,6 +170,7 @@
             richTextBox2.Size = new Size(616, 281);
             richTextBox2.TabIndex = 14;
             richTextBox2.Text = "";
+            richTextBox2.WordWrap = false;
             // 
             // openFileDialog1
             // 

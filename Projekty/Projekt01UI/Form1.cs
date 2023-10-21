@@ -10,7 +10,7 @@ namespace Projekt01UI
     public partial class Form1 : Form
     {
         private TextAnalyzerDataPresenter textAnalyzerDataPresenter;
-        private BaseTextStatisticsServicePresenter baseTextStatisticsServicePresenter;
+        private TextStatisticsServicePresenter textStatisticsServicePresenter;
 
         public Form1()
         {
@@ -43,17 +43,7 @@ namespace Projekt01UI
             {
                 string linieTekstu = File.ReadAllText(openFileDialog1.FileName);
                 richTextBox1.Text = linieTekstu;
-                baseTextStatisticsServicePresenter = new BaseTextStatisticsServicePresenter();
-                TextStatisticsData data = baseTextStatisticsServicePresenter.CountStatistics(linieTekstu);
-                TextPrintingData dataResult = baseTextStatisticsServicePresenter.FillPrintingData(data);
-                textBox1.Text = dataResult.AllSymbolCount.ToString();
-                textBox2.Text = dataResult.UniqueSymbolCount.ToString();
-                textBox3.Text = dataResult.Entropy.ToString();
-                foreach (SymbolPrintingData symbol in dataResult.SymbolStatistics) {
-                    richTextBox2.Text = symbol.BinaryNotation + " | " + symbol.DecimalNotation + " | " + symbol.Symbol + " | " + symbol.Frequency + " | " + symbol.Probability + " | " + symbol.InformationQuantity + "\n";
-                }
-
-
+                textStatisticsServicePresenter.PerformTextStatistics(linieTekstu);
             }
 
         }
@@ -66,6 +56,7 @@ namespace Projekt01UI
         private void Form1_Load(object sender, EventArgs e)
         {
             //textAnalyzerDataPresenter = new TextAnalyzerDataPresenter(textBox1, textBox2, textBox3, , textBox5);
+            textStatisticsServicePresenter = new TextStatisticsServicePresenter(richTextBox2, textBox1, textBox2, textBox3, textBox5);
         }
 
         private void label3_Click(object sender, EventArgs e)

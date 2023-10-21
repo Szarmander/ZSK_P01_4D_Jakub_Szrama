@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace projekt01.Core.Services
 {
-
-    public class BaseTextStatisticsServicePresenter : BaseTextStatisticsService
+    public class TextStatisticsService : BaseTextStatisticsService
     {
         public override TextStatisticsData CountStatistics(string text)
         {
@@ -19,41 +18,35 @@ namespace projekt01.Core.Services
 
             //Entropy
             double infoCharacter = 0;
-            Dictionary<char, double> table = new Dictionary<char, double>();
+            Dictionary<char, int> table = new Dictionary<char, int>();
 
             foreach (char c in text)
             {
-                if(table.ContainsKey(c)) { table[c]++; }
+                if (table.ContainsKey(c)) { table[c]++; }
                 else { table.Add(c, 1); }
             }
 
             double freq;
             List<SymbolStatisticsData> symbolStatistics = new List<SymbolStatisticsData>();
 
-            foreach (KeyValuePair<char, double> letter in table) 
+            foreach (KeyValuePair<char, int> letter in table)
             {
                 freq = letter.Value / text.Length;
                 SymbolStatisticsData symbol = new SymbolStatisticsData();
                 symbol.Symbol = letter.Key;
-                symbol.Frequency = letter.Key;
+                symbol.Frequency = letter.Value;
                 symbol.Probability = letter.Value / (double)text.Length;
-                symbol.InformationQuantity = 123;
+                symbol.InformationQuantity = Math.Log((double)1 / symbol.Probability, 2);
                 symbolStatistics.Add(symbol);
-                infoCharacter += freq*Math.Log(freq)/Math.Log(2);
+                infoCharacter += symbol.Probability * symbol.InformationQuantity;
             }
-            infoCharacter *= -1;
+            //infoCharacter *= -1;
 
             data.Entropy = infoCharacter;
-
-            //SymbolStatistics
-            foreach (char c in text) 
-            {
-                
-            }
-
+            data.SymbolStatistics = symbolStatistics;
 
             return data;
-            
+
         }
     }
 }
