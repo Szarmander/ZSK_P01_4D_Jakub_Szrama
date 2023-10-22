@@ -49,11 +49,11 @@ namespace projekt01.Core.Services
             names.Add("Ilość informacji");
 
 
-            _tb_Statistics.Text = string.Format("\n| {0}| {1}| {2}| {3}| {4}| {5}", names[0].PadRight(45), names[1].PadRight(30), names[2].PadRight(25), names[3].PadRight(20), names[4].PadRight(20), names[5].PadRight(20));
+            _tb_Statistics.Text = string.Format("{0}| {1}| {2}| {3}| {4}| {5}", names[0].PadRight(30), names[1].PadRight(30), names[2].PadRight(30), names[3].PadRight(30), names[4].PadRight(30), names[5].PadRight(30));
 
             foreach ( var item in result.SymbolStatistics ) 
             {
-                _tb_Statistics.Text += string.Format("\n| {0}| {1}| {2}| {3}| {4}| {5}", item.BinaryNotation.PadRight(40), item.DecimalNotation.PadRight(30), item.Symbol.PadRight(25), item.Frequency.PadRight(20), item.Probability.PadRight(20), item.InformationQuantity.PadRight(20));
+                _tb_Statistics.Text += string.Format("\n{0}| {1}| {2}| {3}| {4}| {5}", item.BinaryNotation.PadRight(30), item.DecimalNotation.PadRight(30), item.Symbol.PadRight(30), item.Frequency.PadRight(30), item.Probability.PadRight(30), item.InformationQuantity.PadRight(30));
             }
 
             _tb_AllSymbolCount.Text = result.AllSymbolCount.ToString();

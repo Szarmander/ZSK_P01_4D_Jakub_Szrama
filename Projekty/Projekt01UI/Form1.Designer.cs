@@ -165,6 +165,7 @@
             // 
             // richTextBox2
             // 
+            richTextBox2.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point);
             richTextBox2.Location = new Point(12, 157);
             richTextBox2.Name = "richTextBox2";
             richTextBox2.Size = new Size(616, 281);
