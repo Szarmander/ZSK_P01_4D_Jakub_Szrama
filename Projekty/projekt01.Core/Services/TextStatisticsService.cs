@@ -14,7 +14,6 @@ namespace projekt01.Core.Services
             TextStatisticsData data = new TextStatisticsData();
 
             data.AllSymbolCount = text.Length;
-            data.UniqueSymbolCount = text.Distinct().Count();
 
             //Entropy
             double infoCharacter = 0;
@@ -41,7 +40,7 @@ namespace projekt01.Core.Services
                 infoCharacter += symbol.Probability * symbol.InformationQuantity;
             }
             //infoCharacter *= -1;
-
+            data.UniqueSymbolCount = symbolStatistics.Count();
             data.Entropy = infoCharacter;
             data.SymbolStatistics = symbolStatistics;
 

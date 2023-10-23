@@ -40,22 +40,28 @@ namespace projekt01.Core.Services
             var result = _statisticsService.FillPrintingData(countedStatistics);
             sw.Stop();
 
-            List<string> names = new List<string>();
-            names.Add("Zapis binarny");
-            names.Add("Zapis dziesiętny");
-            names.Add("Symbol");
-            names.Add("Częstość");
-            names.Add("Prawdopodobieństwo");
-            names.Add("Ilość informacji");
-
-
-            _tb_Statistics.Text = string.Format("{0}| {1}| {2}| {3}| {4}| {5}", names[0].PadRight(30), names[1].PadRight(30), names[2].PadRight(30), names[3].PadRight(30), names[4].PadRight(30), names[5].PadRight(30));
+            StringBuilder sb = new StringBuilder();
+            string mask = "{0}|{1}|{2}|{3}|{4}|{5}";
+            int colWidth = 25;
+            sb.AppendLine(string.Format(mask,
+                    "Zapis binarny".PadRight(colWidth, ' '),
+                    "Zapis dziesiętny".PadRight(colWidth, ' '),
+                    "Symbol".PadRight(colWidth, ' '),
+                    "Częstość".PadRight(colWidth, ' '),
+                    "Prawdopodobieństwo".PadRight(colWidth, ' '),
+                    "Ilość informacji".PadRight(colWidth, ' ')));
 
             foreach ( var item in result.SymbolStatistics ) 
             {
-                _tb_Statistics.Text += string.Format("\n{0}| {1}| {2}| {3}| {4}| {5}", item.BinaryNotation.PadRight(30), item.DecimalNotation.PadRight(30), item.Symbol.PadRight(30), item.Frequency.PadRight(30), item.Probability.PadRight(30), item.InformationQuantity.PadRight(30));
+                sb.AppendLine(string.Format(mask,
+                   item.BinaryNotation?.PadRight(colWidth, ' '),
+                   item.DecimalNotation?.ToString().PadRight(colWidth, ' '),
+                   item.Symbol?.PadRight(colWidth, ' '),
+                   item.Frequency?.ToString().PadRight(colWidth, ' '),
+                   item.Probability?.ToString().PadRight(colWidth, ' '),
+                   item.InformationQuantity?.ToString().PadRight(colWidth, ' ')));
             }
-
+            _tb_Statistics.Text = sb.ToString();
             _tb_AllSymbolCount.Text = result.AllSymbolCount.ToString();
             _tb_UniqueSymbolCount.Text = result.UniqueSymbolCount.ToString();
             _tb_Entropy.Text = result.Entropy.ToString();
