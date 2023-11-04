@@ -20,7 +20,8 @@ namespace projekt01.Core.Services
         private TextBox _tb_Entropy;
         private TextBox _tb_Time;
 
-        private TextStatisticsService _statisticsService;
+        //private TextStatisticsService _statisticsService;
+        private TextStatiscticsServiceListMethod _statisticsService;
 
         public TextStatisticsServicePresenter(DataGridView statiscticsPresenter, TextBox allSymbolCountPresenter, TextBox uniqueSymbolCountPresenter, TextBox entropyPresenter, TextBox timePresenter) 
         {
@@ -30,7 +31,8 @@ namespace projekt01.Core.Services
             _tb_Entropy = entropyPresenter;
             _tb_Time = timePresenter;
 
-            _statisticsService = new TextStatisticsService();
+            //_statisticsService = new TextStatisticsService();
+            _statisticsService = new TextStatiscticsServiceListMethod();
         }
 
         public void PerformTextStatistics(string text)
