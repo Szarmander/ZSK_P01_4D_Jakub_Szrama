@@ -41,8 +41,15 @@
             textBox5 = new TextBox();
             label6 = new Label();
             label7 = new Label();
-            richTextBox2 = new RichTextBox();
             openFileDialog1 = new OpenFileDialog();
+            dataGridView1 = new DataGridView();
+            zapisBinarny = new DataGridViewTextBoxColumn();
+            zapisDziesietny = new DataGridViewTextBoxColumn();
+            symbol = new DataGridViewTextBoxColumn();
+            czestosc = new DataGridViewTextBoxColumn();
+            prawdopodobienstwo = new DataGridViewTextBoxColumn();
+            iloscInformacji = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -163,26 +170,60 @@
             label7.TabIndex = 13;
             label7.Text = "Statystyka:";
             // 
-            // richTextBox2
-            // 
-            richTextBox2.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBox2.Location = new Point(12, 157);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(616, 281);
-            richTextBox2.TabIndex = 14;
-            richTextBox2.Text = "";
-            richTextBox2.WordWrap = false;
-            // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { zapisBinarny, zapisDziesietny, symbol, czestosc, prawdopodobienstwo, iloscInformacji });
+            dataGridView1.Location = new Point(12, 152);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(616, 286);
+            dataGridView1.TabIndex = 14;
+            // 
+            // zapisBinarny
+            // 
+            zapisBinarny.HeaderText = "Zapis binarny";
+            zapisBinarny.Name = "zapisBinarny";
+            // 
+            // zapisDziesietny
+            // 
+            zapisDziesietny.HeaderText = "Zapis dziesiętny";
+            zapisDziesietny.Name = "zapisDziesietny";
+            // 
+            // symbol
+            // 
+            symbol.HeaderText = "Symbol";
+            symbol.Name = "symbol";
+            // 
+            // czestosc
+            // 
+            czestosc.HeaderText = "Częstość";
+            czestosc.Name = "czestosc";
+            // 
+            // prawdopodobienstwo
+            // 
+            prawdopodobienstwo.HeaderText = "Prawdopodobieństwo";
+            prawdopodobienstwo.Name = "prawdopodobienstwo";
+            // 
+            // iloscInformacji
+            // 
+            iloscInformacji.HeaderText = "Ilość informacji";
+            iloscInformacji.Name = "iloscInformacji";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(richTextBox2);
+            Controls.Add(dataGridView1);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(textBox5);
@@ -199,6 +240,7 @@
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -218,7 +260,13 @@
         private TextBox textBox5;
         private Label label6;
         private Label label7;
-        private RichTextBox richTextBox2;
         private OpenFileDialog openFileDialog1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn zapisBinarny;
+        private DataGridViewTextBoxColumn zapisDziesietny;
+        private DataGridViewTextBoxColumn symbol;
+        private DataGridViewTextBoxColumn czestosc;
+        private DataGridViewTextBoxColumn prawdopodobienstwo;
+        private DataGridViewTextBoxColumn iloscInformacji;
     }
 }

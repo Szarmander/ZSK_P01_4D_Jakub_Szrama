@@ -56,7 +56,7 @@ namespace Projekt01UI
         private void Form1_Load(object sender, EventArgs e)
         {
             //textAnalyzerDataPresenter = new TextAnalyzerDataPresenter(textBox1, textBox2, textBox3, , textBox5);
-            textStatisticsServicePresenter = new TextStatisticsServicePresenter(richTextBox2, textBox1, textBox2, textBox3, textBox5);
+            textStatisticsServicePresenter = new TextStatisticsServicePresenter(dataGridView1, textBox1, textBox2, textBox3, textBox5);
         }
 
         private void label3_Click(object sender, EventArgs e)
